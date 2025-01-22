@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captcha-Verifizierung</title>
+    <title>Captcha Landing Page</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h1>Captcha-Verifizierung</h1>
-    <form action="freigabe.html" method="POST">
+    <h1>Por favor resuelva el CAPTCHA para acceder al cuestionario</h1>
+
+    <!-- Das Captcha Widget von Google -->
+    <form action="https://www.google.com/recaptcha/api/siteverify" method="POST" onsubmit="return verifyCaptcha()">
         <div class="g-recaptcha" data-sitekey="6LeDA8AqAAAAACnJ_p-HN-Oep--KMkI8ctn0WO3i"></div>
-        <br/>
-        <button type="submit">Continuar al cuestionario</button>
+        <br><br>
+        <button type="submit">Resolver captcha y continuar</button>
     </form>
+
+    <script>
+        // Funktion, die beim Absenden des Formulars überprüft, ob das Captcha gelöst wurde
+        function verifyCaptcha() {
+            var response = grecaptcha.getResponse();
+            if (response.length == 0) {
+                alert("Por favor resuelva el CAPTCHA!");
+                return false;  // Verhindert das Absenden des Formulars, wenn das Captcha nicht gelöst wurde
+            }
+            // Wenn das Captcha gelöst wurde, wird die Seite weitergeleitet
+            window.location.href = "https://www.soscisurvey.de/frspanien/";  // Weiterleitung zur Umfrageseite
+            return true;
+        }
+    </script>
 </body>
 </html>
