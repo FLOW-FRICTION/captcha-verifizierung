@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captcha Landing Page</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Página de Captcha</title>
+    <!-- Lade das reCAPTCHA Skript auf Spanisch -->
+    <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </head>
 <body>
-    <h1>Bitte lösen Sie das CAPTCHA, um zum Fragebogen zu gelangen</h1>
+    <h1>Por favor, resuelva el CAPTCHA para acceder al cuestionario</h1>
 
-    <!-- Das Captcha-Widget von Google -->
+    <!-- El Widget de reCAPTCHA de Google -->
     <form id="captchaForm">
         <div class="g-recaptcha" data-sitekey="6LeDA8AqAAAAACnJ_p-HN-Oep--KMkI8ctn0WO3i"></div>
         <br><br>
-        <button type="button" onclick="submitCaptcha()">Captcha lösen und weiter</button>
+        <button type="button" onclick="submitCaptcha()">Resolver CAPTCHA y continuar</button>
     </form>
 
     <script>
         function submitCaptcha() {
-            // Prüfen, ob das Captcha gelöst wurde
+            // Verifica si el CAPTCHA ha sido resuelto
             var response = grecaptcha.getResponse();
             if (response.length == 0) {
-                alert("Bitte lösen Sie das CAPTCHA!");
-                return; // Nichts passiert, wenn Captcha nicht gelöst wurde
+                alert("¡Por favor, resuelva el CAPTCHA!");
+                return; // No hacer nada si el CAPTCHA no ha sido resuelto
             }
 
-            // Wenn das Captcha gelöst wurde, weiterleiten
-            alert("Captcha erfolgreich gelöst! Sie werden jetzt weitergeleitet.");
-            window.location.href = "https://www.soscisurvey.de/frspanien/";  // Hier wird zur Umfrageseite weitergeleitet
+            // Si el CAPTCHA ha sido resuelto, redirigir
+            alert("¡CAPTCHA resuelto con éxito! Ahora será redirigido.");
+            window.location.href = "https://www.soscisurvey.de/frspanien/";  // Aquí redirige a la página del cuestionario
         }
     </script>
 </body>
