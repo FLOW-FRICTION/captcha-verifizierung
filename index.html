@@ -7,26 +7,27 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h1>Por favor resuelva el CAPTCHA para acceder al cuestionario</h1>
+    <h1>Bitte lösen Sie das CAPTCHA, um zum Fragebogen zu gelangen</h1>
 
-    <!-- Das Captcha Widget von Google -->
-    <form action="https://www.google.com/recaptcha/api/siteverify" method="POST" onsubmit="return verifyCaptcha()">
+    <!-- Das Captcha-Widget von Google -->
+    <form id="captchaForm">
         <div class="g-recaptcha" data-sitekey="6LeDA8AqAAAAACnJ_p-HN-Oep--KMkI8ctn0WO3i"></div>
         <br><br>
-        <button type="submit">Resolver captcha y continuar</button>
+        <button type="button" onclick="submitCaptcha()">Captcha lösen und weiter</button>
     </form>
 
     <script>
-        // Funktion, die beim Absenden des Formulars überprüft, ob das Captcha gelöst wurde
-        function verifyCaptcha() {
+        function submitCaptcha() {
+            // Prüfen, ob das Captcha gelöst wurde
             var response = grecaptcha.getResponse();
             if (response.length == 0) {
-                alert("Por favor resuelva el CAPTCHA!");
-                return false;  // Verhindert das Absenden des Formulars, wenn das Captcha nicht gelöst wurde
+                alert("Bitte lösen Sie das CAPTCHA!");
+                return; // Nichts passiert, wenn Captcha nicht gelöst wurde
             }
-            // Wenn das Captcha gelöst wurde, wird die Seite weitergeleitet
-            window.location.href = "https://www.soscisurvey.de/frspanien/";  // Weiterleitung zur Umfrageseite
-            return true;
+
+            // Wenn das Captcha gelöst wurde, weiterleiten
+            alert("Captcha erfolgreich gelöst! Sie werden jetzt weitergeleitet.");
+            window.location.href = "https://www.soscisurvey.de/frspanien/";  // Hier wird zur Umfrageseite weitergeleitet
         }
     </script>
 </body>
